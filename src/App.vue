@@ -7,7 +7,7 @@ const route = useRoute();
 
 </script>
 <template>
-  <router-view v-if="route.path == '/login' || route.path == '/register' || route.path == '/'" />
+  <router-view v-if="route.path == '/login'" />
   <Layout v-else />
   <Toaster />
 </template>

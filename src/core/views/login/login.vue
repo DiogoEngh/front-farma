@@ -21,12 +21,12 @@ const errors = ref({
     email: false
 })
 
-const handleChangeEmail = (event) => {
+const handleChangeEmail = (event: any) => {
     const { value } = event.target;
     payload.value.email = value?.substring(0, 100);
 }
 
-const handleChangePassword = (event) => {
+const handleChangePassword = (event: any) => {
     const { value } = event.target;
     payload.value.password = value?.substring(0, 100);
 }
@@ -70,7 +70,6 @@ const handleLogin = () => {
                 <Loader2 v-if="isLoading" class="animate-spin"/>
                 Entrar
             </Button>
-            <Button variant="link" class="w-full" @click="() => router.push('/register')">Registrar-se</Button>
         </Card>
     </div>
 </template>

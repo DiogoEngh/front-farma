@@ -2,10 +2,9 @@
 import { useColorMode } from '@vueuse/core'
 import { Icon } from '@iconify/vue'
 import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { LogOut } from "lucide-vue-next"
 import navigation from "../../config/navigation"
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import getUsernameFromToken from "../../utils/user";
 import { onMounted, ref } from "vue";
 
@@ -15,14 +14,13 @@ const theme = {
 }
 const mode = useColorMode()
 const router = useRouter()
-const route = useRoute()
 const user = ref("")
 
 const handleChangeTheme = () => {
     mode.value = mode.value == theme.dark ? theme.light : theme.dark;
 }
 
-const handleChangeRouter = (path) => {
+const handleChangeRouter = (path: string) => {
     router.push(path)
 }
 
@@ -43,7 +41,9 @@ onMounted(() => {
 <template>
   <header class="border-b-2 px-4 py-2 flex justify-between">
     <div class="flex">
-        <Button v-for="route of navigation" variant="link" @click="handleChangeRouter(route.path)">{{ route.name }}</Button>
+        <div v-for="route of navigation">
+            <Button v-if="route.roles.includes(user.roles)" variant="link" @click="handleChangeRouter(route.path)">{{ route.name }}</Button>
+        </div>
     </div>
     <div class="flex justify-end gap-2 items-center">
         <Button size="icon" variant="outline" @click="handleChangeTheme">
