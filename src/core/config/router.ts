@@ -1,8 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/home/home.vue';
 import Login from '../views/login/login.vue';
 import Users from '../views/users/users.vue';
 import Patients from '../views/patients/patients.vue';
+import PatientDetails from '../views/patients/PatientDetails.vue';
+import NewPatient from '../views/patients/NewPatient.vue';
 
 const routes = [
   {
@@ -28,6 +30,18 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/patients/:id',
+    name: 'PatientDetails',
+    component: PatientDetails,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/patients/new',
+    name: 'NewPatient',
+    component: NewPatient,
+    meta: { requiresAuth: true }
+  },
+  {
     path: '/login',
     name: 'Login',
     component: Login
@@ -36,12 +50,12 @@ const routes = [
     path: '/:catchAll(.*)',
     redirect: '/home'
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
+});
 
 router.beforeEach((to, _, next) => {
   const isAuthenticated = !!localStorage.getItem('accessToken');
@@ -52,4 +66,4 @@ router.beforeEach((to, _, next) => {
   }
 });
 
-export default router
+export default router;
