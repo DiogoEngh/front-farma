@@ -3,6 +3,8 @@ import Home from '../views/home/home.vue';
 import Login from '../views/login/login.vue';
 import Users from '../views/users/users.vue';
 import Patients from '../views/patients/patients.vue';
+import PatientsDetails from '../views/patients/patients-details.vue';
+import PatientsAdd from '../views/patients/patients-add.vue';
 
 const routes = [
   {
@@ -25,6 +27,18 @@ const routes = [
     path: '/patients',
     name: 'Patients',
     component: Patients,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/patients/add',
+    name: 'PatientsAdd',
+    component: PatientsAdd,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/patients/:customerId/details',
+    name: 'PatientsDetails',
+    component: PatientsDetails,
     meta: { requiresAuth: true }
   },
   {

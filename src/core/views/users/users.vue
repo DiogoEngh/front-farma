@@ -18,13 +18,13 @@ import handleAuth from "../../services/handleAuth";
 
 const { toast } = useToast()
 
-const rows = ref([]);
+const rows = ref<any>([]);
 const isLoading = ref(false);
 const isLoadingButton = ref(false);
 const username = ref("");
 const isOpenModalAddUser = ref(false);
 const isOpenModalRemoveUser = ref(false);
-const userSelected = ref({});
+const userSelected = ref({ username: "", id: "" });
 const payload = ref({
     username: "",
     email: "",
@@ -55,7 +55,10 @@ const handleOpenModalRemoveUser = (row: any) => {
 
 const handleCloseModalRemoveUser = () => {
     isOpenModalRemoveUser.value = false;
-    userSelected.value = {};
+    userSelected.value = {
+        username: "",
+        id: ""
+    };
 }
 
 const handleChangeUsername = (event: any) => {
@@ -89,6 +92,7 @@ const handleCreateUser = () => {
 }
 
 const handleRemoveUser = () => {
+    /* @ts-ignore */
     const userId = userSelected.value.id;
     isLoadingButton.value = true;
     handleUsers.remove(userId)
@@ -107,12 +111,13 @@ const handleRemoveUser = () => {
 onMounted(() => {
     handleGetUsers()
     const token = localStorage.getItem("accessToken") || "";
+    /* @ts-ignore */
     username.value = getUsernameFromToken(token)?.username;
 })
 
 </script>
 <template>
-    <div class="flex flex-col gap-4 items-end">
+    <div class="flex flex-col gap-4 items-end p-4">
         <div class="w-full">
             <span class="text-xl">Farmaceuticos</span>
         </div>

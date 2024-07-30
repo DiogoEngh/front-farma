@@ -1,18 +1,25 @@
+import { EPermission } from "../enums/EPermission";
+
 const navigation = [
     {
         path: '/home',
-        name: 'Início',
-        roles: [1, 2]
+        name: 'Painel',
+        roles: [EPermission.operator, EPermission.admin]
+    },
+    {
+        path: '/agenda',
+        name: 'Agenda',
+        roles: [EPermission.operator, EPermission.admin]
     },
     {
         path: '/users',
         name: 'Farmaceuticos',
-        roles: [1]
+        roles: [EPermission.admin]
     },
     {
         path: '/patients',
         name: 'Pacientes',
-        roles: [1, 2]
+        roles: [EPermission.operator, EPermission.admin]
     }
 ]
 

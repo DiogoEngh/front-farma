@@ -8,16 +8,12 @@ import { useRouter } from "vue-router";
 import getUsernameFromToken from "../../utils/user";
 import { onMounted, ref } from "vue";
 
-const theme = {
-    dark: 'dark',
-    light: 'light'
-}
 const mode = useColorMode()
 const router = useRouter()
-const user = ref("")
+const user = ref<any>("")
 
 const handleChangeTheme = () => {
-    mode.value = mode.value == theme.dark ? theme.light : theme.dark;
+    mode.value = mode.value == "dark" ? "light" : "dark";
 }
 
 const handleChangeRouter = (path: string) => {

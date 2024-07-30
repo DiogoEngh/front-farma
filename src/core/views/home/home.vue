@@ -12,7 +12,7 @@ const isLoadingPatients = ref(false);
 const rowsPatients = ref([]);
 const isLoadingUsers = ref(false);
 const rowsUsers = ref([]);
-const user = ref("");
+const user = ref<any>("");
 
 const handleGetPatients = () => {
     isLoadingPatients.value = true;
@@ -51,17 +51,19 @@ onMounted(() => {
 
 </script>
 <template>
-    <div class="w-full">
-        <span class="text-xl">Início</span>
-    </div>
-    <div class="flex w-full gap-4 mt-4">
-        <Card class="p-4 rounded-md w-full" v-if="user.roles == 1">
-            <span>Quantidade de farmaceuticos</span><br>
-            <span>{{ rowsUsers.length }}</span>
-        </Card>
-        <Card class="p-4 rounded-md w-full">
-            <span>Quantidade de pacientes</span><br>
-            <span>{{ rowsPatients.length }}</span>
-        </Card>
+    <div class="p-4">
+        <div class="w-full">
+            <span class="text-xl">Início</span>
+        </div>
+        <div class="flex w-full gap-4 mt-4">
+            <Card class="p-4 rounded-md w-full" v-if="user.roles == 1">
+                <span>Quantidade de farmaceuticos</span><br>
+                <span>{{ rowsUsers.length }}</span>
+            </Card>
+            <Card class="p-4 rounded-md w-full">
+                <span>Quantidade de pacientes</span><br>
+                <span>{{ rowsPatients.length }}</span>
+            </Card>
+        </div>
     </div>
 </template>

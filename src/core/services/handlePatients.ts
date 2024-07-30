@@ -1,16 +1,16 @@
 import apiService from "../config/apiService";
 import axiosInstance from "../config/axios";
 
-class HandleUsers {
+class HandlePatients {
     get() {
         return axiosInstance.get(`${apiService.patients}`)
     }
-    add({ username, email }: any) {
-        return axiosInstance.post(`${apiService.patients}`, { username, email })
+    add(body: any) {
+        return axiosInstance.post(`${apiService.patients}`, body)
     }
     remove(id: string | number) {
         return axiosInstance.delete(`${apiService.patients}/${id}`)
     }
 }
 
-export default new HandleUsers();
+export default new HandlePatients();
